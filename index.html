@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+  <title>Title</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+
+<div class='wrapper'>
+  <div class="main">
+    <h2><a href="/">학교 AI서비스 입니다</a></h2>
+    <div class="content">
+
+      <div class="example">
+       <div class="example_header">
+         <h2>대학교 AI 서비스</h2>
+         <h3>당신이 원하는 정보를 알려드립니다!</h3>
+       </div>
+        <ul class="example_list">
+          <li>
+            <a href="https://lib.dongyang.ac.kr/">
+              <div class="exList_img"></div>
+              <h5 style="color:#d3d3d3; text-align:center">동양미래대학교</h5>
+              <p style="color:#d3d3d3; text-align:center">학교 도서관</p>
+              <p style="color:#d3d3d3; text-align:center">도서관 홈페이지로 이동합니다.</p>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.dongyang.ac.kr/">
+              <div class="exList_img"></div>
+              <h5 style="color:#d3d3d3; text-align:center">동양미래대학교</h5>
+              <p style="color:#d3d3d3; text-align:center">학교 홈페이지</p>
+              <p style="color:#d3d3d3; text-align:center">학교 홈페이지로 이동합니다.</p>
+            </a>
+          </li>
+          <li>
+            <a href="https://eclass.dongyang.ac.kr/">
+              <div class="exList_img"></div>
+              <h5 style="color:#d3d3d3; text-align:center">동양미래대학교</h5>
+              <p style="color:#d3d3d3; text-align:center">원격수업서비스</p>
+              <p style="color:#d3d3d3; text-align:center">eclass로 이동합니다.</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<div>
+  <div class="footer">
+    <div class="input">
+      <input class="input_text" type="text" placeholder="Send a message." onKeypress="javascript:if(event.keyCode==13) {sendMessage()}">
+
+      </input>
+    
+      <button class="input_send" onclick="sendMessage()">
+        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
+            stroke-linejoin="round" class="h-4 w-4 mr-1" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </div>
+    <p class="footer_text">Free Research Preview. ChatGPT may produce inaccurate information about people, places, or
+      facts. ChatGPT May 12 Version</p>
+  </div>
+  
+  <div id="'result"></div>
+  <script type="text/javascript">
+    function sendMessage() {
+      const content = document.querySelector(".content");
+      const sendBtn = document.querySelector(".input_send");
+      const input = document.querySelector(".input_text");
+
+
+      const placeholder = document.querySelector(".example");
+      placeholder.style.display = 'none';
+
+
+      let send_chat = document.createElement("div");
+      send_chat.className = "send_chat";
+
+      let sender_profile = document.createElement("div");
+      sender_profile.className = "sender_profile";
+      sender_profile.innerText = "나";
+
+      let send_message = document.createElement("div");
+      send_message.className = "send_message";
+      send_message.innerText = input.value;
+
+      send_chat.appendChild(sender_profile);
+      send_chat.appendChild(send_message);
+
+      content.appendChild(send_chat);
+
+      $.ajax({
+        url: "/process-data",
+        type: "POST",
+        data: JSON.stringify({ message: input.value }),
+        contentType: "application/json",
+        success: function(response) {
+          //서버로부터 응답처리
+          let receive_chat = document.createElement("div");
+          receive_chat.className = "receive_chat";
+
+          let receiver_profile = document.createElement("div");
+          receiver_profile.className = "receiver_profile";
+          receiver_profile.innerText = "GPT";
+
+          let receive_message = document.createElement("div");
+          receive_message.className = "send_message";
+          // receive_message.innerText = "'" + input.value + "' 라고 입력하셨습니다.";
+          receive_message.textContent = response.result;
+          receive_message.setAttribute('style', 'text-align:left')
+
+          receive_chat.appendChild(receiver_profile);
+          receive_chat.appendChild(receive_message);
+          input.value = "";
+
+          content.appendChild(receive_chat);
+        }
+      })
+    }
+  </script>
+
+</div>
+
+</body>

@@ -1,0 +1,152 @@
+body {
+  background-color: rgb(52, 53, 65);
+  position: relative;
+}
+
+a:link,
+a:visited {
+  color: white;
+  text-decoration: none; /* 밑줄 제거 */
+}
+
+.wrapper {
+  text-align: center;
+
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 134px;
+}
+
+.wrapper > * {
+  color: white;
+}
+
+.footer {
+  height: 100px;
+  width: 90%;
+  padding-left: 5%;
+  background-color: rgb(52, 53, 65);
+  text-align: center;
+  position : fixed;
+  bottom: 0;
+
+  /*transform : translateY(-100%);*/
+}
+
+.input {
+  display: flex;
+  flex-direction: row;
+}
+
+.input_text {
+  background-color: rgb(64, 65, 79);
+  color: white;
+  width: 98.5%;
+  height: 20px;
+  padding: 12px 0px 12px 16px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+}
+
+.input_send {
+  height: 45px;
+  background-color: transparent;
+  width: 53px;
+  border: none;
+  right: 0.5rem;
+  position: absolute;
+}
+
+.input_send > svg {
+  /*fill: rgb(87, 88, 103);*/
+}
+
+.footer_text {
+  color: #c5c5d2;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.example {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.send_chat {
+  display: flex;
+  width: 70%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.sender_profile {
+  background-color: lightslategrey;
+  width: 50px;
+  height: 50px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.exList_img {
+  width: 300px;
+  height: 150px;
+  background-size: cover;
+  background-position: 50%;
+  background-image: url('https://source.unsplash.com/1600x900/?university');
+}
+
+.example_list {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  gap: 20px;
+  text-align: left;
+}
+
+.example_list > li {
+  border: 1px solid white;
+  border-radius: 4px;
+}
+
+
+.receive_chat {
+  display: flex;
+  width: 70%;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding-top: 30px;
+  background-color: rgb(68, 70, 84);
+  padding-bottom: 30px;
+}
+
+.receiver_profile {
+  background-color: greenyellow;
+  width: 50px;
+  height: 50px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
